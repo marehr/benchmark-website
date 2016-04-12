@@ -1,0 +1,67 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SeqBench</title>
+
+        <!-- BOOTSTRAP STYLES-->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <!-- FONTAWESOME STYLES-->
+        <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+        <!--CUSTOM BASIC STYLES-->
+        <link rel="stylesheet" href="{% static 'css/basic.css' %}">
+        <!--CUSTOM MAIN STYLES-->
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="{% static 'css/seqan.css' %}">
+        <!-- GOOGLE FONTS-->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel='stylesheet' type='text/css' />
+    </head>
+    <body>
+        <div id="wrapper">
+            <!-- /. NAV TOP  -->
+            <nav class="navbar-default navbar-side" role="navigation">
+                <div>
+                    <img src="{% static 'img/seqan_logo.png' %}" alt="logo" style="width:167px">
+                </div>
+                <div class="sidebar-collapse">
+                    <ul class="nav" id="main-menu">
+                        {% block navigation-list %}
+                        {% include "benchmark_app/navigation.html" %}
+                        {% endblock%}
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- /. NAV SIDE  -->
+            <div id="page-wrapper">
+                <div id="page-inner-result">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <!-- /. PAGE INNER  -->
+            </div>
+            <!-- /. PAGE WRAPPER  -->
+        </div>
+        <!-- /. WRAPPER  -->
+
+        <div id="footer-sec">
+            &copy; 2014 YourCompany | Design By : <a href="http://www.binarytheme.com/" target="_blank">BinaryTheme.com</a>
+        </div>
+        <!-- /. FOOTER  -->
+        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+        <!-- JQUERY SCRIPTS -->
+        <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+        <!-- BOOTSTRAP SCRIPTS -->
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <!-- METISMENU SCRIPTS -->
+        <script src="{% static 'js/jquery.metisMenu.js' %}"></script>
+        <!-- CUSTOM SCRIPTS -->
+        <script src="{% static 'js/custom.js' %}"></script>
+
+        <script src="{% static 'js/dynamic_content.js' %}"></script>
+
+    </body>
+</html>
