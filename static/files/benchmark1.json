@@ -1,0 +1,171 @@
+{
+    "informations": {
+        "system": { // system informations
+            "os": ["ubuntu-12.04"], // Operation System name
+            "cpu_frequency": [3500], // in Mhz
+            "cpu_name": ["Intel(R) Core(TM) i7-3770K CPU @ 3.50GHz"], // cpu name
+            "memory": [32203], // in Mb
+            "date": ["2016-04-13 14:44:35"], // date when the
+            "threads": [2], // threads specified
+            "max_threads": [2] // Number of System-Max-Threads
+        },
+
+        "project": { // project informations
+            "name": ["seqan"], // project name (mandatory)
+            "title": ["seqan-2.1-clang"], // title will be displayed, default: #{name}-#{version}-#{date}, e.g. seqan-2.1-dev-2016-04-13_14-44-35
+            "version": ["2.1-dev"], // project version (optional)
+            "website": ["http://www.seqan.de"], // project website (optional)
+            "language": ["c++"], // programming language (optional)
+            "compiler": ["clang++"], // compiler-Name (optional)
+            "compiler_version": ["3.5"], // compiler version (optional)
+        }
+    },
+
+    "results": { // benchmark results
+
+        "counting_kmers": { // category id
+
+            "title": "Counting k-mers", // category title
+            "subcategories": { // results of subcategories
+
+                "counting_kmers_50": { // sub-category id
+                    "title":"Counting 50-mers", // sub-category title
+                    "subtitle": "", // sub-category subtitle
+                    // quality
+                    // - 0: output was completely different
+                    // - 1: output was as specified
+                    // - 0.7: output was 70% of the optimal solution
+                    "single_core": {
+                        "time": [1.563], // execution time in seconds
+                        "score": [800], // score
+                        "quality": [0] // quality
+                    },
+                    "multi_core": {
+                        "time": [0.124],
+                        "score": [1000],
+                        "quality": [1]
+                    }
+                },
+
+                "counting_kmers_60": {
+                    "title":"Counting 70-mers",
+                    "subtitle": "",
+                    "single_core": {
+                        "time": [23.67],
+                        "score": [600],
+                        "quality": [0],
+                    },
+                    "multi_core": {
+                        "time": [17.54],
+                        "score": [850],
+                        "quality": [1]
+                    }
+                }
+            }
+        },
+
+        "pairwise_alignment": {
+
+            "title": "Pairwise Alignment",
+            "subcategories": {
+
+                "pairwise_alignment_needleman_wunsch_dna": {
+                    "title":"DNA Needleman-Wunsch-Alignment",
+                    "subtitle":"Mismatch penalty -3, Indel penalty -2, Match score +2",
+                    "single_core": {
+                        "time": [15.65],
+                        "score": [800],
+                        "quality": [0]
+                    },
+                    "multi_core": {
+                        "time": [12.12],
+                        "score": [1000],
+                        "quality": [1]
+                    }
+                },
+
+                "pairwise_alignment_smith_waterman_dna": {
+                    "title":"DNA Needleman-Wunsch-Alignment",
+                    "subtitle":"Mismatch penalty -3, Indel penalty -2, Match score +2",
+                    "single_core": {
+                        "time": [0.454],
+                        "score": [600],
+                        "quality": [1],
+                    },
+                    "multi_core": {
+                        "time": [3.454],
+                        "score": [850],
+                        "quality": [1]
+                    }
+                },
+
+                "pairwise_alignment_needleman_wunsch_protein": {
+                    "title":"Protein Needleman-Wunsch-Alignment",
+                    "subtitle":"BLOSUM62 matrix with affine gap costs, gap opening penalty: -3, gap extension penalty: -1",
+                    "single_core": {
+                        "time": [350.123],
+                        "score": [750],
+                        "quality": [0.6],
+                    },
+                    "multi_core": {
+                        "time": [123.123],
+                        "score": [1100],
+                        "quality": [0.6],
+                    }
+                }
+            }
+        },
+
+        "index_approx_search": {
+            "title": "Index based approximate search",
+
+            "subcategories": {
+
+                "index_approx_search_positions_50_mers_exact": {
+                    "title":"Positions of 50mers",
+                    "subtitle":"0 errors",
+                    "single_core": {
+                        "time": [12.5],
+                        "score": [1200],
+                        "quality": [1]
+                    },
+                    "multi_core": {
+                        "time": [13.6],
+                        "score": [100],
+                        "quality": [1]
+                    }
+                },
+
+                "index_approx_search_positions_50_mers_one_error": {
+                    "title":"Positions of 50mers",
+                    "subtitle":"1 error",
+                    "single_core": {
+                        "time": [16.12],
+                        "score": [1200],
+                        "quality": [1]
+                    },
+                    "multi_core": {
+                        "time": [190.12],
+                        "score": [100],
+                        "quality": [1]
+                    }
+                },
+
+                "index_approx_search_positions_50_mers_two_errors": {
+                    "title":"Positions of 50mers",
+                    "subtitle":"2 errors",
+                    "single_core": {
+                        "time": [89.45],
+                        "score": [750],
+                        "quality": [1]
+                    },
+                    "multi_core": {
+                        "time": [12.45],
+                        "score": [1100],
+                        "quality": [1]
+                    }
+                }
+            }
+        }
+    }
+}
