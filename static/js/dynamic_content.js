@@ -166,7 +166,6 @@ var createResult = function(i, file, subcategory_template, subcategory, m)
 // --------------------------------------------------------------------------
 var createSubcategory = function(div_subcategories, subcategory, cat_data)
 {
-    console.log(subcategory)
     var subcategory = cat_data["subcategories"][subcategory];
     var subcategory_template = getTemplate('#template-subcategory');
 
@@ -190,7 +189,6 @@ var createSubcategory = function(div_subcategories, subcategory, cat_data)
     }
     else
     {
-        console.log(subcategory)
         max_value = getSubcatMax(subcategory);
     }
 
@@ -213,7 +211,7 @@ var createCategory = function(cat_data)
 
     var head = category_template.find('.category_head');
     head.empty();
-    head.append(category);                             // set category name to panel title
+    head.append(cat_data.title);                             // set category name to panel title
     head.attr('href', "#" + category.replace(/ /g,'')) // set reference for collapse panel
     $('#result-body2').append(category_template);      // append category to result body
 
@@ -292,6 +290,45 @@ var updateSummary = function(data)
 };
 
 // --------------------------------------------------------------------------
+// Function updateSystemInformation()
+// --------------------------------------------------------------------------
+var updateSystemInformation = function(data)
+{
+    for(i in filenames)
+    {
+        name = "system_file" + i;
+        var system_template = getTemplate("#template-system");
+        system_template.attr("class", summary_class);
+
+        var head = system_template.find('.system-head');
+        head.attr('href', "#" + name.replace(/ /g,''));
+        var collapse_id = system_template.find('.system-collapse-id');
+        collapse_id.attr('id', name.replace(/ /g,''));
+
+        var os = system_template.find('.os');
+        var cpu = system_template.find('.cpu');
+        var ram = system_template.find('.ram');
+        var t = system_template.find('.t');
+        var compiler = system_template.find('.compiler');
+        var lang = system_template.find('.lang');
+        os.empty();
+        cpu.empty();
+        ram.empty();
+        t.empty();
+        compiler.empty();
+        lang.empty();
+        os.append(data["system"]["os"][i]);
+        cpu.append(data["system"]["cpu_name"][i]);
+        ram.append(data["system"]["memory"][i]);
+        t.append(data["system"]["threads"][i]);
+        compiler.append(data["project"]["compiler"][i] + "(Version: " + data["project"]["compiler_version"][i] + ")");
+        lang.append(data["project"]["language"][i]);
+        
+        $("#summary-system").append(system_template);
+    }
+};
+
+// --------------------------------------------------------------------------
 // Function updateBarScaling()
 // --------------------------------------------------------------------------
 var updateBarScaling = function(tag)
@@ -338,11 +375,14 @@ $(function()
 
     $.getJSON(json_file, function(data)
     {
-        // update global variables
-        if(!updateGlobalVariables(data["informations"])) return;
-
+        informations = data["informations"]
         results = data["results"];
+
+        // update global variables
+        if(!updateGlobalVariables(informations)) return;
+
         updateSummary(results);
+        updateSystemInformation(informations);
 
         for(category in results)
         {
