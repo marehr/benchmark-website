@@ -1,44 +1,40 @@
 {
     "informations": {
-        "system": { // system informations
-            "os": ["ubuntu-12.04"], // Operation System name
-            "cpu_frequency": [3500], // in Mhz
-            "cpu_name": ["Intel(R) Core(TM) i7-3770K CPU @ 3.50GHz"], // cpu name
-            "memory": [32203], // in Mb
-            "date": ["2016-04-13 14:44:35"], // date when the
-            "threads": [2], // threads specified
-            "max_threads": [2] // Number of System-Max-Threads
+        "system": {
+            "os": ["ubuntu-12.04"],
+            "cpu_frequency": [3500],
+            "cpu_name": ["Intel(R) Core(TM) i7-3770K CPU @ 3.50GHz"],
+            "memory": [32203],
+            "date": ["2016-04-13 14:44:35"],
+            "threads": [2],
+            "max_threads": [2]
         },
 
-        "project": { // project informations
-            "name": ["seqan"], // project name (mandatory)
-            "title": ["seqan-2.1-clang"], // title will be displayed, default: #{name}-#{version}-#{date}, e.g. seqan-2.1-dev-2016-04-13_14-44-35
-            "version": ["2.1-dev"], // project version (optional)
-            "website": ["http://www.seqan.de"], // project website (optional)
-            "language": ["c++"], // programming language (optional)
-            "compiler": ["clang++"], // compiler-Name (optional)
-            "compiler_version": ["3.5"], // compiler version (optional)
+        "project": {
+            "name": ["seqan"],
+            "title": ["seqan-2.1-clang"],
+            "version": ["2.1-dev"],
+            "website": ["http://www.seqan.de"],
+            "language": ["c++"],
+            "compiler": ["clang++"],
+            "compiler_version": ["3.5"]
         }
     },
 
-    "results": { // benchmark results
+    "results": {
 
-        "counting_kmers": { // category id
+        "counting_kmers": {
 
-            "title": "Counting k-mers", // category title
-            "subcategories": { // results of subcategories
+            "title": "Counting k-mers",
+            "subcategories": {
 
-                "counting_kmers_50": { // sub-category id
-                    "title":"Counting 50-mers", // sub-category title
-                    "subtitle": "", // sub-category subtitle
-                    // quality
-                    // - 0: output was completely different
-                    // - 1: output was as specified
-                    // - 0.7: output was 70% of the optimal solution
+                "counting_kmers_50": {
+                    "title":"Counting 50-mers",
+                    "subtitle": "",
                     "single_core": {
-                        "time": [1.563], // execution time in seconds
-                        "score": [800], // score
-                        "quality": [0] // quality
+                        "time": [1.563],
+                        "score": [800],
+                        "quality": [0]
                     },
                     "multi_core": {
                         "time": [0.124],
@@ -53,7 +49,7 @@
                     "single_core": {
                         "time": [23.67],
                         "score": [600],
-                        "quality": [0],
+                        "quality": [0]
                     },
                     "multi_core": {
                         "time": [17.54],
@@ -90,7 +86,7 @@
                     "single_core": {
                         "time": [0.454],
                         "score": [600],
-                        "quality": [1],
+                        "quality": [1]
                     },
                     "multi_core": {
                         "time": [3.454],
@@ -105,12 +101,12 @@
                     "single_core": {
                         "time": [350.123],
                         "score": [750],
-                        "quality": [0.6],
+                        "quality": [0.6]
                     },
                     "multi_core": {
                         "time": [123.123],
                         "score": [1100],
-                        "quality": [0.6],
+                        "quality": [0.6]
                     }
                 }
             }
