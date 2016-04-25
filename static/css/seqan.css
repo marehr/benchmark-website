@@ -227,10 +227,10 @@ Result page Content
 }
 
 .table-system {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 0px;
-  margin-left: 5px;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0px;
+    margin-left: 5px;
 }
 .table-system > thead > tr > th,
 .table-system > tbody > tr > th,
@@ -238,14 +238,14 @@ Result page Content
 .table-system > thead > tr > td,
 .table-system > tbody > tr > td,
 .table-system > tfoot > tr > td {
-  padding: -5px;
-  vertical-align: top;
-  border-top: 1px solid #ddd;
-  padding-right: 2px;
+    padding: -5px;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    padding-right: 2px;
 }
 .table-system > thead > tr > th {
-  vertical-align: bottom;
-  border-bottom: 2px solid #ddd;
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
 }
 .table-system > caption + thead > tr:first-child > th,
 .table-system > colgroup + thead > tr:first-child > th,
@@ -253,11 +253,11 @@ Result page Content
 .table-system > caption + thead > tr:first-child > td,
 .table-system > colgroup + thead > tr:first-child > td,
 .table-system > thead:first-child > tr:first-child > td {
-  border-top: 0;
+    border-top: 0;
 }
 .table-system > tbody + tbody {
-  border-top: 2px solid #ddd;
+    border-top: 2px solid #ddd;
 }
 .table-system .table-system {
-  background-color: #fff;
+    background-color: #fff;
 }
