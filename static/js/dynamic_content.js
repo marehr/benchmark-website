@@ -3,27 +3,13 @@
 // ==========================================================================
 
 // the filenames of the uploaded files. Those shall be replaced when the server file upload is set up.
-var filenames = ["seqan 1.0", "seqan-intel 2.0", "seqan 3.0"]
+var filenames = [];
+
+// the number of compared files.
+var comparison_count = 0;
 
 // the class for the summary div to be used for layouting reasons.
 var summary_class = "";
-switch (filenames.length) {
-    case 0:
-        console.log("something went wrong..")
-        break;
-    case 1:
-        summary_class = "col-md-12";
-        break;
-    case 2:
-        summary_class = "col-md-6";
-        break;
-    case 3:
-        summary_class = "col-md-4";
-        break;
-    case 4:
-        summary_class = "col-md-3";
-        break;
-}
 
 // the colors to be used for the different input files. The number of colors will restrict the number of possible files to compare.
 var colors = ["#56A5EC", "#E2A76F", "#438D80"];
@@ -34,6 +20,34 @@ var scaling_tag = "subcat"
 // ==========================================================================
 // Functions
 // ==========================================================================
+
+// --------------------------------------------------------------------------
+// Function updateGlobalVariables()
+// --------------------------------------------------------------------------
+var updateGlobalVariables = function(informations)
+{
+    filenames = informations["project"]["title"];
+    comparison_count = filenames.length;
+
+    switch (comparison_count) {
+        case 0:
+            return false;
+        case 1:
+            summary_class = "col-md-12";
+            break;
+        case 2:
+            summary_class = "col-md-6";
+            break;
+        case 3:
+            summary_class = "col-md-4";
+            break;
+        case 4:
+            summary_class = "col-md-3";
+            break;
+    }
+
+    return true;
+};
 
 // --------------------------------------------------------------------------
 // Function getTemplate()
@@ -49,11 +63,10 @@ var getTemplate = function(template_id)
 var getCatMax = function(cat_data)
 {
     var max_value = 0;
-    for(i in cat_data)
+    for(subcategory in cat_data["subcategories"])
     {
-        var tmp_max_value_single = Math.max.apply(Math, cat_data[i]["measures_single"]);
-        var tmp_max_value_multiple = Math.max.apply(Math, cat_data[i]["measures_multiple"]);
-        max_value = Math.max(max_value, tmp_max_value_single, tmp_max_value_multiple);
+        subcategory = cat_data["subcategories"][subcategory];
+        max_value = Math.max(max_value, getSubcatMax(subcategory));
     }
     return max_value;
 };
@@ -63,10 +76,9 @@ var getCatMax = function(cat_data)
 // --------------------------------------------------------------------------
 var getSubcatMax = function(subcat_data)
 {
-    var tmp_max_value_single = Math.max.apply(Math, subcat_data["measures_single"]);
-    var tmp_max_value_multiple = Math.max.apply(Math, subcat_data["measures_multiple"]);
-    var max_value = Math.max(tmp_max_value_single, tmp_max_value_multiple);
-    return max_value;
+    var max_single = Math.max.apply(Math, subcat_data["single_core"]["score"]);
+    var max_multi = Math.max.apply(Math, subcat_data["multi_core"]["score"]);
+    return Math.max(max_single, max_multi);
 };
 
 // --------------------------------------------------------------------------
@@ -125,10 +137,10 @@ var createResult = function(i, file, subcategory_template, subcategory, m)
     name.empty();
     name.append(file);
 
-    var score_single = subcategory["measures_single"][i];
-    var score_multiple = subcategory["measures_multiple"][i];
-    var quality_value_single = subcategory["quality_single"][i];
-    var quality_value_multiple = subcategory["quality_multiple"][i];
+    var score_single = subcategory["single_core"]["score"][i];
+    var score_multiple = subcategory["multi_core"]["score"][i];
+    var quality_value_single = subcategory["single_core"]["quality"][i];
+    var quality_value_multiple = subcategory["multi_core"]["quality"][i];
 
     // update resultbar single-core
     var bar_single = results_template.find('.result_bar_single');
@@ -152,9 +164,9 @@ var createResult = function(i, file, subcategory_template, subcategory, m)
 // --------------------------------------------------------------------------
 // Function createSubcategory()
 // --------------------------------------------------------------------------
-var createSubcategory = function(div_subcategories, subcategory_index, cat_data)
+var createSubcategory = function(div_subcategories, subcategory, cat_data)
 {
-    var subcategory = cat_data[subcategory_index];
+    var subcategory = cat_data["subcategories"][subcategory];
     var subcategory_template = getTemplate('#template-subcategory');
 
     var name = subcategory_template.find('.subcategory_name');
@@ -199,7 +211,7 @@ var createCategory = function(cat_data)
 
     var head = category_template.find('.category_head');
     head.empty();
-    head.append(category);                             // set category name to panel title
+    head.append(cat_data.title);                             // set category name to panel title
     head.attr('href', "#" + category.replace(/ /g,'')) // set reference for collapse panel
     $('#result-body2').append(category_template);      // append category to result body
 
@@ -208,10 +220,10 @@ var createCategory = function(cat_data)
     div_subcategories.data("cat_max_value", max_value);          // save max value
 
     subcat_max_values = [];
-    for (subcategory in cat_data) // returns index
+    for (subcategory in cat_data["subcategories"]) // returns index
     {
         createSubcategory(div_subcategories, subcategory, cat_data);
-        subcat_max_values = subcat_max_values.concat([getSubcatMax(cat_data[subcategory])]);
+        subcat_max_values = subcat_max_values.concat([getSubcatMax(cat_data["subcategories"][subcategory])]);
     }
     div_subcategories.data("subcat_max_values", subcat_max_values);
 };
@@ -231,13 +243,14 @@ var computeSum = function(data)
 
     for (category in data)
     {
-        for (i in data[category])
+        category = data[category]; // transform nane into object
+        for (subcategory in category["subcategories"])
         {
-            var subcategory = data[category][i];
-            for(j = 0; j < subcategory["measures_single"].length; ++j)
+            subcategory = category["subcategories"][subcategory];
+            for(j = 0; j < comparison_count; ++j)
             {
-                var s = parseInt(subcategory["measures_single"][j]);
-                var m = parseInt(subcategory["measures_multiple"][j]);
+                var s = parseInt(subcategory["single_core"]["score"][j]);
+                var m = parseInt(subcategory["multi_core"]["score"][j]);
                 sum[j][0] = sum[j][0] + s;
                 sum[j][1] = sum[j][1] + m;
             }
@@ -273,6 +286,45 @@ var updateSummary = function(data)
         multi.append(sum[i][1]);
 
         $("#summary").append(summary_template);
+    }
+};
+
+// --------------------------------------------------------------------------
+// Function updateSystemInformation()
+// --------------------------------------------------------------------------
+var updateSystemInformation = function(data)
+{
+    for(i in filenames)
+    {
+        name = "system_file" + i;
+        var system_template = getTemplate("#template-system");
+        system_template.attr("class", summary_class);
+
+        var head = system_template.find('.system-head');
+        head.attr('href', "#" + name.replace(/ /g,''));
+        var collapse_id = system_template.find('.system-collapse-id');
+        collapse_id.attr('id', name.replace(/ /g,''));
+
+        var os = system_template.find('.os');
+        var cpu = system_template.find('.cpu');
+        var ram = system_template.find('.ram');
+        var t = system_template.find('.t');
+        var compiler = system_template.find('.compiler');
+        var lang = system_template.find('.lang');
+        os.empty();
+        cpu.empty();
+        ram.empty();
+        t.empty();
+        compiler.empty();
+        lang.empty();
+        os.append(data["system"]["os"][i]);
+        cpu.append(data["system"]["cpu_name"][i]);
+        ram.append(data["system"]["memory"][i]);
+        t.append(data["system"]["threads"][i]);
+        compiler.append(data["project"]["compiler"][i] + "(Version: " + data["project"]["compiler_version"][i] + ")");
+        lang.append(data["project"]["language"][i]);
+        
+        $("#summary-system").append(system_template);
     }
 };
 
@@ -323,11 +375,18 @@ $(function()
 
     $.getJSON(json_file, function(data)
     {
-        updateSummary(data);
+        informations = data["informations"]
+        results = data["results"];
 
-        for(category in data)
+        // update global variables
+        if(!updateGlobalVariables(informations)) return;
+
+        updateSummary(results);
+        updateSystemInformation(informations);
+
+        for(category in results)
         {
-            createCategory(data[category]);
+            createCategory(results[category]);
         }
     });
 });

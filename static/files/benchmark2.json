@@ -1,23 +1,23 @@
 {
     "informations": {
         "system": {
-            "os": ["ubuntu-12.04"],
-            "cpu_frequency": [3500],
-            "cpu_name": ["Intel(R) Core(TM) i7-3770K CPU @ 3.50GHz"],
-            "memory": [32203],
-            "date": ["2016-04-13 14:44:35"],
-            "threads": [2],
-            "max_threads": [2]
+            "os": ["ubuntu-12.04","ubuntu-12.04"],
+            "cpu_frequency": [3500,3500],
+            "cpu_name": ["Intel(R) Core(TM) i7-3770K CPU @ 3.50GHz","Intel(R) Core(TM) i7-3770K CPU @ 3.50GHz"],
+            "memory": [32203,32203],
+            "date": ["2016-04-13 14:44:35","2016-04-13 14:44:35"],
+            "threads": [2,2],
+            "max_threads": [2,2]
         },
 
         "project": {
-            "name": ["seqan"],
-            "title": ["seqan-2.1-clang"],
-            "version": ["2.1-dev"],
-            "website": ["http://www.seqan.de"],
-            "language": ["c++"],
-            "compiler": ["clang++"],
-            "compiler_version": ["3.5"]
+            "name": ["seqan","seqan"],
+            "title": ["seqan-2.1-clang","seqan-2.1-clang"],
+            "version": ["2.1-dev","2.1-dev"],
+            "website": ["http://www.seqan.de","http://www.seqan.de"],
+            "language": ["c++","c++"],
+            "compiler": ["clang++","clang++"],
+            "compiler_version": ["3.5","3.5"]
         }
     },
 
@@ -32,14 +32,14 @@
                     "title":"Counting 50-mers",
                     "subtitle": "",
                     "single_core": {
-                        "time": [1.563],
-                        "score": [800],
-                        "quality": [0]
+                        "time": [1.563,1.563],
+                        "score": [800,800],
+                        "quality": [0,0]
                     },
                     "multi_core": {
-                        "time": [0.124],
-                        "score": [1000],
-                        "quality": [1]
+                        "time": [0.124,0.124],
+                        "score": [1000,1000],
+                        "quality": [1,1]
                     }
                 },
 
@@ -47,14 +47,14 @@
                     "title":"Counting 70-mers",
                     "subtitle": "",
                     "single_core": {
-                        "time": [23.67],
-                        "score": [600],
-                        "quality": [0]
+                        "time": [23.67,23.67],
+                        "score": [600,600],
+                        "quality": [0,0]
                     },
                     "multi_core": {
-                        "time": [17.54],
-                        "score": [850],
-                        "quality": [1]
+                        "time": [17.54,17.54],
+                        "score": [850,850],
+                        "quality": [1,1]
                     }
                 }
             }
@@ -69,14 +69,14 @@
                     "title":"DNA Needleman-Wunsch-Alignment",
                     "subtitle":"Mismatch penalty -3, Indel penalty -2, Match score +2",
                     "single_core": {
-                        "time": [15.65],
-                        "score": [800],
-                        "quality": [0]
+                        "time": [15.65,15.65],
+                        "score": [800,800],
+                        "quality": [0,0]
                     },
                     "multi_core": {
-                        "time": [12.12],
-                        "score": [1000],
-                        "quality": [1]
+                        "time": [12.12,12.12],
+                        "score": [1000,1000],
+                        "quality": [1,1]
                     }
                 },
 
@@ -84,14 +84,14 @@
                     "title":"DNA Needleman-Wunsch-Alignment",
                     "subtitle":"Mismatch penalty -3, Indel penalty -2, Match score +2",
                     "single_core": {
-                        "time": [0.454],
-                        "score": [600],
-                        "quality": [1]
+                        "time": [0.454,0.454],
+                        "score": [600,600],
+                        "quality": [1,1]
                     },
                     "multi_core": {
-                        "time": [3.454],
-                        "score": [850],
-                        "quality": [1]
+                        "time": [3.454,3.454],
+                        "score": [850,850],
+                        "quality": [1,1]
                     }
                 },
 
@@ -99,14 +99,14 @@
                     "title":"Protein Needleman-Wunsch-Alignment",
                     "subtitle":"BLOSUM62 matrix with affine gap costs, gap opening penalty: -3, gap extension penalty: -1",
                     "single_core": {
-                        "time": [350.123],
-                        "score": [750],
-                        "quality": [0.6]
+                        "time": [350.123,350.123],
+                        "score": [750,750],
+                        "quality": [0.6,0.6]
                     },
                     "multi_core": {
-                        "time": [123.123],
-                        "score": [1100],
-                        "quality": [0.6]
+                        "time": [123.123,123.123],
+                        "score": [1100,1100],
+                        "quality": [0.6,0.6]
                     }
                 }
             }
@@ -121,14 +121,14 @@
                     "title":"Positions of 50mers",
                     "subtitle":"0 errors",
                     "single_core": {
-                        "time": [12.5],
-                        "score": [1200],
-                        "quality": [1]
+                        "time": [12.5,12.5],
+                        "score": [1200,1200],
+                        "quality": [1,1]
                     },
                     "multi_core": {
-                        "time": [13.6],
-                        "score": [100],
-                        "quality": [1]
+                        "time": [13.6,13.6],
+                        "score": [100,100],
+                        "quality": [1,1]
                     }
                 },
 
@@ -136,14 +136,14 @@
                     "title":"Positions of 50mers",
                     "subtitle":"1 error",
                     "single_core": {
-                        "time": [16.12],
-                        "score": [1200],
-                        "quality": [1]
+                        "time": [16.12,16.12],
+                        "score": [1200,1200],
+                        "quality": [1,1]
                     },
                     "multi_core": {
-                        "time": [190.12],
-                        "score": [100],
-                        "quality": [1]
+                        "time": [190.12,190.12],
+                        "score": [100,100],
+                        "quality": [1,1]
                     }
                 },
 
@@ -151,14 +151,14 @@
                     "title":"Positions of 50mers",
                     "subtitle":"2 errors",
                     "single_core": {
-                        "time": [89.45],
-                        "score": [750],
-                        "quality": [1]
+                        "time": [89.45,89.45],
+                        "score": [750,750],
+                        "quality": [1,1]
                     },
                     "multi_core": {
-                        "time": [12.45],
-                        "score": [1100],
-                        "quality": [1]
+                        "time": [12.45,12.45],
+                        "score": [1100,1100],
+                        "quality": [1,1]
                     }
                 }
             }

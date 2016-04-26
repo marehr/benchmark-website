@@ -225,3 +225,39 @@ Result page Content
     background-color: rgb(86, 165, 236);
     color: black;
 }
+
+.table-system {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0px;
+    margin-left: 5px;
+}
+.table-system > thead > tr > th,
+.table-system > tbody > tr > th,
+.table-system > tfoot > tr > th,
+.table-system > thead > tr > td,
+.table-system > tbody > tr > td,
+.table-system > tfoot > tr > td {
+    padding: -5px;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    padding-right: 2px;
+}
+.table-system > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+}
+.table-system > caption + thead > tr:first-child > th,
+.table-system > colgroup + thead > tr:first-child > th,
+.table-system > thead:first-child > tr:first-child > th,
+.table-system > caption + thead > tr:first-child > td,
+.table-system > colgroup + thead > tr:first-child > td,
+.table-system > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+.table-system > tbody + tbody {
+    border-top: 2px solid #ddd;
+}
+.table-system .table-system {
+    background-color: #fff;
+}

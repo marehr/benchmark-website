@@ -8,21 +8,11 @@
         <div id="summary">
             <!-- insert summary templates here -->
         </div>
-    </div>
-
-    <div class='col-md-12 result-system-informations'>
-        <hr style='margin: 0'/>
-        <div class='panel-config panel-default-config'>
-            <div class='panel-heading-config'>
-                <h6 class='panel-title-config'>
-                    <a class='collapsed' href='#system' data-toggle='collapse'>system information...</a>
-                </h6>
-            </div>
-            <div class='panel-collapse collapse' id='system'>
-                <div class="panel-body-config">Here go some system information like number of threads, operating system and other stuff....</div>
-            </div>
+        <div id="summary-system">
+            <!-- insert system templates here -->
         </div>
     </div>
+
     <div class='result-body col-md-12'>
         <hr style='margin-top: 0'/>
     </div>
@@ -38,6 +28,9 @@
             display: none;
         }
         #template-summary {
+            display: none;
+        }
+        #template-system {
             display: none;
         }
     </style>
@@ -109,6 +102,48 @@
     </div>
     <!-- template summary - end -->
 
+    <!-- template system information - start -->
+    <div id ='template-system' class='panel-config panel-default-config'>
+        <div class='panel-heading-config'>
+            <h6 class='panel-title-config'>
+                <a class='system-head collapsed' href='#system' data-toggle='collapse'>system information...</a>
+            </h6>
+        </div>
+        <div class='system-collapse-id panel-collapse collapse' id='system'>
+            <div class="system-body panel-body-config">
+                <table class="table-system">
+                    <tbody>
+                      <tr>
+                        <td>OS</td>
+                        <td class="os">not provided</td>
+                      </tr>
+                      <tr>
+                        <td>CPU</td>
+                        <td class="cpu">not provided</td>
+                      </tr>
+                      <tr>
+                        <td>RAM</td>
+                        <td class="ram">not provided</td>
+                      </tr>
+                      <tr>
+                        <td>Threads</td>
+                        <td class="t">not provided</td>
+                      </tr>
+                      <tr>
+                        <td>Compiler</td>
+                        <td class="compiler">not provided</td>
+                      </tr>
+                      <tr>
+                        <td>Language</td>
+                        <td class="lang">not provided</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- template system information - end -->
+
     <div class='col-md-12' id='result-body2'></div>
 
     <!--<script src="http://d3js.org/d3.v3.min.js"  charset="utf-8"></script>-->
@@ -116,7 +151,7 @@
 </div>
 
 <script type="text/javascript">
-var json_file = "{% static 'files/data3.json' %}";
+var json_file = "{% static 'files/benchmark2.json' %}";
 </script>
 
 {% endblock %}
